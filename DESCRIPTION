@@ -1,0 +1,19 @@
+Package: HiBED
+Type: Package
+Title: HiBED
+Version: 0.1.0
+Author: c(person("Ze", "Zhang", role = c("cre", "aut"),
+        email = "ze.zhang.gr@dartmouth.edu"), person(c("Lucas", "A."),
+        "Salas", role = c("aut"),
+        email = "lucas.a.salas.diaz@dartmouth.edu"))
+Maintainer: Ze Zhang <ze.zhang.gr@dartmouth.edu>
+Description: The package estimates proportions up to 7 cell types in brain tissues.  
+License: GNU General Public License v.3.0
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.2.1
+URL: https://github.com/SalasLab/HiBED
+Imports: minfi, dplyr, FlowSorted.Blood.EPIC, tibble
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
