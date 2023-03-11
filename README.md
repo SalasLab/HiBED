@@ -19,3 +19,17 @@ load("HiBED_Libraries")
 ## Deconvolution function
 ```
 ?HiBED_deconvolution
+```
+
+## Example
+```
+library(FlowSorted.Blood.EPIC)
+library(FlowSorted.DLPFC.450k)
+library(minfi)
+Mset<-preprocessRaw(FlowSorted.DLPFC.450k)
+Examples_Betas<-getBeta(Mset)
+HiBED_result<-HiBED_deconvolution(Examples_Betas, h=2)
+print(head(HiBED_result))
+```
+
+
