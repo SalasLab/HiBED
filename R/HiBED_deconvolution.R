@@ -16,17 +16,17 @@
 #' @return
 #' A matrix with predicted cell proportions in brain tissues.
 #'
-#' @import 	minfi
-#'
 #' @import  FlowSorted.Blood.EPIC
 #'
 #' @import  dplyr
 #'
 #' @import  tibble
 #'
+#' @import  minfi
+#'
 #' @export
 
-HiBED_deconvolution2 <- function(Beta, h=2){
+HiBED_deconvolution <- function(Beta, h=2){
   proj1<-as.data.frame(projectCellType_CP(Beta[rownames(Library_Layer1[which(rownames(Library_Layer1) %in% rownames(Beta)),]),],
                                           as.matrix(Library_Layer1[which(rownames(Library_Layer1) %in% rownames(Beta)),]), lessThanOne = TRUE))
   proj1[proj1<1e-05]<-0
