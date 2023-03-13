@@ -11,7 +11,7 @@ devtools::install_github("SalasLab/HiBED")
 
 ## Load library 
 ```
-library(HiBMED)
+library(HiBED)
 
 load("HiBED_Libraries")
 ```
