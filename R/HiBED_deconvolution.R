@@ -37,9 +37,8 @@
 #'
 #' @import  FlowSorted.DLPFC.450k
 #'
-#' @import  minfi
-#'
 #' @export
+#'
 
 HiBED_deconvolution <- function(Beta, h=2){
 
