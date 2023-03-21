@@ -13,7 +13,7 @@ devtools::install_github("SalasLab/HiBED")
 ```
 library(HiBED)
 
-load("HiBED_Libraries")
+data("HiBED_Libraries")
 ```
 
 ## Deconvolution function
