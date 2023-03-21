@@ -37,6 +37,10 @@
 #'
 #' @import  FlowSorted.DLPFC.450k
 #'
+#' @importFrom minfi preprocessRaw
+#'
+#' @importFrom minfi getBeta
+#'
 #' @export
 #'
 
