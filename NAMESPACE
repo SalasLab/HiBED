@@ -2,6 +2,7 @@
 
 export(HiBED_deconvolution)
 import(FlowSorted.Blood.EPIC)
+import(FlowSorted.DLPFC.450k)
 import(dplyr)
 import(minfi)
 import(tibble)

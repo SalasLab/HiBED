@@ -7,6 +7,18 @@
 #' @description
 #' The function estimates proportions up to 7 cell types in brain tissues.
 #'
+#' @examples
+#' #Step 1: Load required libraries
+#' library(FlowSorted.Blood.EPIC)
+#' library(FlowSorted.DLPFC.450k)
+#' library(minfi)
+#' #Step 2: Load example data and preprocess to get methylation Beta matrix
+#' Mset<-preprocessRaw(FlowSorted.DLPFC.450k)
+#' Examples_Betas<-getBeta(Mset)
+#' #Step 3: Run HiBED and show results
+#' HiBED_result<-HiBED_deconvolution(Examples_Betas, h=2)
+#' head(HiBED_result)
+#'
 #' @param
 #' Beta Methylation beta matrix from brain samples.
 #'
@@ -22,11 +34,19 @@
 #'
 #' @import  tibble
 #'
+#' @import  FlowSorted.DLPFC.450k
+#'
 #' @import  minfi
 #'
 #' @export
 
 HiBED_deconvolution <- function(Beta, h=2){
+
+  Library_Layer1<-as.data.frame(HiBED_Libraries$Library_Layer1)
+  Library_Layer2A<-as.data.frame(HiBED_Libraries$Library_Layer2A)
+  Library_Layer2B<-as.data.frame(HiBED_Libraries$Library_Layer2B)
+  Library_Layer2C<-as.data.frame(HiBED_Libraries$Library_Layer2C)
+
   proj1<-as.data.frame(projectCellType_CP(Beta[rownames(Library_Layer1[which(rownames(Library_Layer1) %in% rownames(Beta)),]),],
                                           as.matrix(Library_Layer1[which(rownames(Library_Layer1) %in% rownames(Beta)),]), lessThanOne = TRUE))
   proj1[proj1<1e-05]<-0
@@ -36,7 +56,7 @@ HiBED_deconvolution <- function(Beta, h=2){
                                            as.matrix(Library_Layer2A[which(rownames(Library_Layer2A) %in% rownames(Beta)),]), lessThanOne = TRUE))
   proj2A[proj2A<1e-05]<-0
 
-  for (i in 1:nrow(proj2A)) {
+  for (i in seq_len(nrow(proj2A))) {
     z<-1/sum(proj2A[i,])
     proj2A[i,]<-z*proj2A[i,]
   }
@@ -47,7 +67,7 @@ HiBED_deconvolution <- function(Beta, h=2){
                                            as.matrix(Library_Layer2B[which(rownames(Library_Layer2B) %in% rownames(Beta)),]), lessThanOne = TRUE))
   proj2B[proj2B<1e-05]<-0
 
-  for (i in 1:nrow(proj2B)) {
+  for (i in seq_len(nrow(proj2B))) {
     z<-1/sum(proj2B[i,])
     proj2B[i,]<-z*proj2B[i,]
   }
@@ -57,7 +77,7 @@ HiBED_deconvolution <- function(Beta, h=2){
                                            as.matrix(Library_Layer2C[which(rownames(Library_Layer2C) %in% rownames(Beta)),]), lessThanOne = TRUE))
   proj2C[proj2C<1e-05]<-0
 
-  for (i in 1:nrow(proj2C)) {
+  for (i in seq_len(nrow(proj2C))) {
     z<-1/sum(proj2C[i,])
     proj2C[i,]<-z*proj2C[i,]
   }
@@ -121,6 +141,6 @@ HiBED_deconvolution <- function(Beta, h=2){
   output_low<-output %>% filter(Sum == "NaN")
   ID_low<-rownames(output_low)
   if(length(ID_low)!=0){
-    print("NaN indicates noisy deconvolution signal, thus removed")}
+    message("NaN indicates noisy deconvolution signal, thus removed")}
   return(output[,!colnames(output)=="Sum"]*100)
 }

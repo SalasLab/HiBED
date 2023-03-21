@@ -17,3 +17,16 @@ A matrix with predicted cell proportions in brain tissues.
 \description{
 The function estimates proportions up to 7 cell types in brain tissues.
 }
+\examples{
+#Step 1: Load required libraries
+library(FlowSorted.Blood.EPIC)
+library(FlowSorted.DLPFC.450k)
+library(minfi)
+#Step 2: Load example data and preprocess to get methylation Beta matrix
+Mset<-preprocessRaw(FlowSorted.DLPFC.450k)
+Examples_Betas<-getBeta(Mset)
+#Step 3: Run HiBED and show results
+HiBED_result<-HiBED_deconvolution(Examples_Betas, h=2)
+head(HiBED_result)
+
+}

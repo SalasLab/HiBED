@@ -7,12 +7,13 @@
 #'     were selected because their methylation signature differs across the
 #'     seven brain cell subtypes.
 #'
-#' @format The matrices are 81 x 3, 183 x 4, 237 x 5, 120 x 4
+#' @format The list contains matrices are 81 x 3, 183 x 4, 237 x 5, 120 x 4
 #'
 #'         The format is:
 #'         num [1:81, 1:3] 0.04592944  0.02268472  0.88886150 ...
 #'
 #' @examples
-#' # data ("HiBED_Libraries")
-#' # head(Library_Layer1)
+#' data("HiBED_Libraries")
+#' head(HiBED_Libraries)
 "HiBED_Libraries"
+
