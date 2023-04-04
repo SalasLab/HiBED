@@ -1,7 +1,7 @@
 Package: HiBED
 Type: Package
 Title: HiBED
-Version: 0.99.1
+Version: 0.99.0
 Authors@R: c(person("Ze", "Zhang", role = c("cre", "aut"),
             email = "ze.zhang.gr@dartmouth.edu"),
             person(c("Lucas", "A."), "Salas", role = c("aut"),

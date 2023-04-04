@@ -37,6 +37,10 @@
 #'
 #' @import  FlowSorted.DLPFC.450k
 #'
+#' @import  IlluminaHumanMethylation450kmanifest
+#'
+#' @import  IlluminaHumanMethylationEPICmanifest
+#'
 #' @importFrom minfi preprocessRaw
 #'
 #' @importFrom minfi getBeta
