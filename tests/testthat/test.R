@@ -6,4 +6,12 @@ test_that("errors if bad parameters", {
   expect_error(HiBED_deconvolution(FlowSorted.DLPFC.450k,
                                    h=2
   ))
+  Mset<-preprocessRaw(FlowSorted.DLPFC.450k)
+  Examples_Betas<-getBeta(Mset)
+  expect_error(HiBED_deconvolution(Examples_Betas,
+                                   h=3
+  ))
+  expect_error(HiBED_deconvolution(Mset,
+                                   h=2
+  ))
 })

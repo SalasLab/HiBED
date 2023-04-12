@@ -24,16 +24,28 @@ microarrays (Zhang Z, Salas LA et al. 2023), consisting of 6 astrocyte,
 
 The reference libraries were used to estimate proportions of 7 major brain cell
 types in 450K and EPIC bulk brain samples using a modified version of 
-the algorithm constrained projection/quadratic programming described in Houseman
-et al. 2012. 
+the algorithm constrained projection/quadratic programming described 
+in Houseman et al. 2012. 
+
+
+**Installation:**  
+```{r eval=TRUE}
+#if (!require("BiocManager", quietly = TRUE))
+#    install.packages("BiocManager")
+
+#BiocManager::install("HiBED")
+```
+
+**Loading packages:**  
+```{r eval=TRUE}
+library(HiBED)
+```
 
 **Objects included:**  
 1. *HiBED_Libraries* contains 4 libraries for deconvolution  
-```{r eval=FALSE}
-data("HiBED_Libraries") 
-```  
 
-**HiBED_deconvolution function for brain cell deconvolution:**  
+
+2. *HiBED_deconvolution function for brain cell deconvolution:*
  
  We offer the function HiBED_deconvolution to estimate proportions for 7 major
  brain cell types, including GABAergic neurons, glutamatergic neurons, 
@@ -43,7 +55,7 @@ data("HiBED_Libraries")
  *see ?HiBED_deconvolution for details*  
 ```{r eval=TRUE}
 # Step 1: Load the reference libraries
-data("HiBED_Libraries") 
+data("HiBED_Libraries", envir = data_env, package = "HiBED")
 # Note: If your machine does not allow access to internet you can download
 # and save the file. Then load it manually into the R environment
 
@@ -63,7 +75,7 @@ Examples_Betas<-getBeta(Mset)
 
  HiBED_result<-HiBED_deconvolution(Examples_Betas, h=2)
                                 
- print(head(HiBED_result))
+ head(HiBED_result)
 
 
 ```

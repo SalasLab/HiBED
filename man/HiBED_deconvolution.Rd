@@ -9,7 +9,8 @@ HiBED_deconvolution(Beta, h = 2)
 \arguments{
 \item{Beta}{Methylation beta matrix from brain samples.}
 
-\item{h}{Specify the layer of deconvolution in the hierarchical model. Default is 2.}
+\item{h}{Numeric variable.
+Specify the layer of deconvolution in the hierarchical model. Default is 2.}
 }
 \value{
 A matrix with predicted cell proportions in brain tissues.
@@ -23,7 +24,7 @@ library(FlowSorted.Blood.EPIC)
 library(FlowSorted.DLPFC.450k)
 library(minfi)
 #Step 2: Load the library, example data and preprocess
-data("HiBED_Libraries")
+data("HiBED_Libraries", envir = data_env, package = "HiBED")
 Mset<-preprocessRaw(FlowSorted.DLPFC.450k)
 Examples_Betas<-getBeta(Mset)
 #Step 3: Run HiBED and show results

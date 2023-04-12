@@ -13,7 +13,7 @@
 #' library(FlowSorted.DLPFC.450k)
 #' library(minfi)
 #' #Step 2: Load the library, example data and preprocess
-#' data("HiBED_Libraries")
+#' data("HiBED_Libraries", envir = data_env, package = "HiBED")
 #' Mset<-preprocessRaw(FlowSorted.DLPFC.450k)
 #' Examples_Betas<-getBeta(Mset)
 #' #Step 3: Run HiBED and show results
@@ -24,7 +24,8 @@
 #' Beta Methylation beta matrix from brain samples.
 #'
 #' @param
-#' h Specify the layer of deconvolution in the hierarchical model. Default is 2.
+#' h Numeric variable.
+#' Specify the layer of deconvolution in the hierarchical model. Default is 2.
 #'
 #' @return
 #' A matrix with predicted cell proportions in brain tissues.
@@ -50,46 +51,77 @@
 
 HiBED_deconvolution <- function(Beta, h=2){
 
-  Library_Layer1<-as.data.frame(HiBED_Libraries$Library_Layer1)
-  Library_Layer2A<-as.data.frame(HiBED_Libraries$Library_Layer2A)
-  Library_Layer2B<-as.data.frame(HiBED_Libraries$Library_Layer2B)
-  Library_Layer2C<-as.data.frame(HiBED_Libraries$Library_Layer2C)
+  Library_Layer1<-as.data.frame(
+    data_env[["HiBED_Libraries"]]$Library_Layer1@assays@data@listData$counts)
+  Library_Layer2A<-as.data.frame(
+    data_env[["HiBED_Libraries"]]$Library_Layer2A@assays@data@listData$counts)
+  Library_Layer2B<-as.data.frame(
+    data_env[["HiBED_Libraries"]]$Library_Layer2B@assays@data@listData$counts)
+  Library_Layer2C<-as.data.frame(
+    data_env[["HiBED_Libraries"]]$Library_Layer2C@assays@data@listData$counts)
 
-  proj1<-as.data.frame(projectCellType_CP(Beta[rownames(Library_Layer1[which(rownames(Library_Layer1) %in% rownames(Beta)),]),],
-                                          as.matrix(Library_Layer1[which(rownames(Library_Layer1) %in% rownames(Beta)),]), lessThanOne = TRUE))
+  proj1<-as.data.frame(projectCellType_CP(Beta[rownames(Library_Layer1[
+    which(rownames(Library_Layer1) %in% rownames(Beta)),]),],
+                                          as.matrix(Library_Layer1[
+                                            which(rownames(Library_Layer1)
+                                                  %in% rownames(Beta)),]),
+    lessThanOne = TRUE))
   proj1[proj1<1e-05]<-0
-  message(nrow(Library_Layer1) - nrow(Library_Layer1[which(rownames(Library_Layer1) %in% rownames(Beta)),]), " out of ",nrow(Library_Layer1),"probes were missing in the Beta matrix for L1")
+  message(nrow(Library_Layer1) - nrow(Library_Layer1[
+    which(rownames(Library_Layer1) %in% rownames(Beta)),]),
+    " out of ",nrow(Library_Layer1),
+    "probes were missing in the Beta matrix for L1")
 
-  proj2A<-as.data.frame(projectCellType_CP(Beta[rownames(Library_Layer2A[which(rownames(Library_Layer2A) %in% rownames(Beta)),]),],
-                                           as.matrix(Library_Layer2A[which(rownames(Library_Layer2A) %in% rownames(Beta)),]), lessThanOne = TRUE))
+  proj2A<-as.data.frame(projectCellType_CP(Beta[
+    rownames(Library_Layer2A[which(rownames(Library_Layer2A)
+                                   %in% rownames(Beta)),]),],
+                                           as.matrix(Library_Layer2A[
+                                             which(rownames(Library_Layer2A)
+                                                   %in% rownames(Beta)),]),
+    lessThanOne = TRUE))
   proj2A[proj2A<1e-05]<-0
 
   for (i in seq_len(nrow(proj2A))) {
     z<-1/sum(proj2A[i,])
     proj2A[i,]<-z*proj2A[i,]
   }
-  message(nrow(Library_Layer2A) - nrow(Library_Layer2A[which(rownames(Library_Layer2A) %in% rownames(Beta)),]), " out of ",nrow(Library_Layer2A),"probes were missing in the Beta matrix for L2A")
+  message(nrow(Library_Layer2A) - nrow(Library_Layer2A[which(
+    rownames(Library_Layer2A) %in% rownames(Beta)),]), " out of ",
+    nrow(Library_Layer2A),"probes were missing in the Beta matrix for L2A")
 
 
-  proj2B<-as.data.frame(projectCellType_CP(Beta[rownames(Library_Layer2B[which(rownames(Library_Layer2B) %in% rownames(Beta)),]),],
-                                           as.matrix(Library_Layer2B[which(rownames(Library_Layer2B) %in% rownames(Beta)),]), lessThanOne = TRUE))
+  proj2B<-as.data.frame(projectCellType_CP(Beta[rownames(Library_Layer2B[
+    which(rownames(Library_Layer2B) %in% rownames(Beta)),]),],
+                                           as.matrix(Library_Layer2B[
+                                             which(rownames(Library_Layer2B)
+                                                   %in% rownames(Beta)),]),
+    lessThanOne = TRUE))
   proj2B[proj2B<1e-05]<-0
 
   for (i in seq_len(nrow(proj2B))) {
     z<-1/sum(proj2B[i,])
     proj2B[i,]<-z*proj2B[i,]
   }
-  message(nrow(Library_Layer2B) - nrow(Library_Layer2B[which(rownames(Library_Layer2B) %in% rownames(Beta)),]), " out of ",nrow(Library_Layer2B),"probes were missing in the Beta matrix for L2B")
+  message(nrow(Library_Layer2B) - nrow(Library_Layer2B[which(
+    rownames(Library_Layer2B) %in% rownames(Beta)),]), " out of ",
+    nrow(Library_Layer2B),"probes were missing in the Beta matrix for L2B")
 
-  proj2C<-as.data.frame(projectCellType_CP(Beta[rownames(Library_Layer2C[which(rownames(Library_Layer2C) %in% rownames(Beta)),]),],
-                                           as.matrix(Library_Layer2C[which(rownames(Library_Layer2C) %in% rownames(Beta)),]), lessThanOne = TRUE))
+  proj2C<-as.data.frame(projectCellType_CP(Beta[rownames(Library_Layer2C[
+    which(rownames(Library_Layer2C) %in% rownames(Beta)),]),],
+                                           as.matrix(Library_Layer2C[
+                                             which(rownames(Library_Layer2C)
+                                                   %in% rownames(Beta)),]),
+    lessThanOne = TRUE))
   proj2C[proj2C<1e-05]<-0
 
   for (i in seq_len(nrow(proj2C))) {
     z<-1/sum(proj2C[i,])
     proj2C[i,]<-z*proj2C[i,]
   }
-  message(nrow(Library_Layer2C) - nrow(Library_Layer2C[which(rownames(Library_Layer2C) %in% rownames(Beta)),]), " out of ",nrow(Library_Layer2C),"probes were missing in the Beta matrix for L2C")
+  message(nrow(Library_Layer2C) - nrow(Library_Layer2C[which(
+    rownames(Library_Layer2C) %in% rownames(Beta)),]),
+    " out of ",nrow(Library_Layer2C),
+    "probes were missing in the Beta matrix for L2C")
 
   proj<-proj1
   h1_proj<-proj
@@ -100,14 +132,16 @@ HiBED_deconvolution <- function(Beta, h=2){
               proj[, c("Endothelial and Stromal")] * proj2A)
   h2A_proj<-proj
 
-  proj2B<-proj2B[,-which(colnames(proj2B) %in% c("Endothelial and Stromal","Neuronal")),
+  proj2B<-proj2B[,-which(colnames(proj2B) %in% c("Endothelial and Stromal",
+                                                 "Neuronal")),
                  drop=FALSE]
   proj2B<-proj2B/rowSums(proj2B)
   proj<-cbind(proj[, -which(colnames(proj) %in% c("Glial"))],
               proj[, c("Glial")] * proj2B)
   h2B_proj<-proj
 
-  proj2C<-proj2C[,-which(colnames(proj2C) %in% c("Endothelial and Stromal","Glial")),
+  proj2C<-proj2C[,-which(colnames(proj2C) %in% c("Endothelial and Stromal",
+                                                 "Glial")),
                  drop=FALSE]
   proj2C<-proj2C/rowSums(proj2C)
   proj<-cbind(proj[, -which(colnames(proj) %in% c("Neuronal"))],
@@ -141,7 +175,8 @@ HiBED_deconvolution <- function(Beta, h=2){
 
   if(h=="1"){
     output<-proj[,c("Endothelial and Stromal","Glial","Neuronal")]
-  }else{output<-proj[,c("Endothelial","Stromal","Astrocyte","Microglial","Oligodendrocyte","GABA","GLU")]
+  }else{output<-proj[,c("Endothelial","Stromal","Astrocyte","Microglial",
+                        "Oligodendrocyte","GABA","GLU")]
   }
 
   output$Sum<-rowSums(output)

@@ -3,7 +3,8 @@
 \docType{data}
 \name{HiBED_Libraries}
 \alias{HiBED_Libraries}
-\title{HiBED library CpGs matrix for brain tissue DNA methylation deconvolution}
+\title{HiBED library CpGs matrix stored in SummarizedExperiment for
+brain tissue DNA methylation deconvolution}
 \format{
 The list contains matrices are 81 x 3, 183 x 4, 237 x 5, 120 x 4
 
@@ -11,7 +12,8 @@ The list contains matrices are 81 x 3, 183 x 4, 237 x 5, 120 x 4
         num [1:81, 1:3] 0.04592944  0.02268472  0.88886150 ...
 }
 \usage{
-HiBED_Libraries
+data_env <- new.env(parent = emptyenv())
+data("HiBED_Libraries", envir = data_env, package = "HiBED")
 }
 \description{
 This object contains 4 matrices of the the average
@@ -21,6 +23,8 @@ This object contains 4 matrices of the the average
     seven brain cell subtypes.
 }
 \examples{
+data("HiBED_Libraries", envir = data_env, package = "HiBED")
+HiBED_Libraries <- data_env[["HiBED_Libraries"]]
 data("HiBED_Libraries")
 head(HiBED_Libraries)
 }

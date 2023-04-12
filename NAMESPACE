@@ -3,6 +3,8 @@
 export(HiBED_deconvolution)
 import(FlowSorted.Blood.EPIC)
 import(FlowSorted.DLPFC.450k)
+import(IlluminaHumanMethylation450kmanifest)
+import(IlluminaHumanMethylationEPICmanifest)
 import(dplyr)
 import(tibble)
 importFrom(minfi,getBeta)
