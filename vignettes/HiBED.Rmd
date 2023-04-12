@@ -43,7 +43,9 @@ library(HiBED)
 
 **Objects included:**  
 1. *HiBED_Libraries* contains 4 libraries for deconvolution  
-
+```{r eval=TRUE}
+data("HiBED_Libraries")
+```
 
 2. *HiBED_deconvolution function for brain cell deconvolution:*
  
@@ -54,13 +56,8 @@ library(HiBED)
  method described in Houseman et al. 2012.    
  *see ?HiBED_deconvolution for details*  
 ```{r eval=TRUE}
-# Step 1: Load the reference libraries
-data("HiBED_Libraries", envir = data_env, package = "HiBED")
-# Note: If your machine does not allow access to internet you can download
-# and save the file. Then load it manually into the R environment
 
-
-# Step 2 load and process example
+# Step 1 load and process example
 library(FlowSorted.Blood.EPIC)
 library(FlowSorted.DLPFC.450k)
 library(minfi)
@@ -69,7 +66,7 @@ Mset<-preprocessRaw(FlowSorted.DLPFC.450k)
 Examples_Betas<-getBeta(Mset)
 
 
-# Step 3: use the HiBED_deconvolution function in combinatation with the
+# Step 2: use the HiBED_deconvolution function in combinatation with the
 # reference libraries for brain cell deconvolution.
 
 
