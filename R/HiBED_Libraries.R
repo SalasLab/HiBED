@@ -15,7 +15,8 @@
 #'
 #'
 #' @usage
-#' data("HiBED_Libraries")
+#' data_env <- new.env(parent = emptyenv())
+#' data("HiBED_Libraries", envir = data_env, package = "HiBED")
 #'
 #' @examples
 #' data_env <- new.env(parent = emptyenv())
