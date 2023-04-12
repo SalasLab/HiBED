@@ -9,11 +9,10 @@ The HiBED deconvolution estimates proportions up to 7 cell types (GABAergic neur
 devtools::install_github("SalasLab/HiBED")
 ```
 
-## Load library 
+## Load package
 ```
 library(HiBED)
 
-data("HiBED_Libraries")
 ```
 
 ## Deconvolution function
