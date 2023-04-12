@@ -30,10 +30,7 @@ in Houseman et al. 2012.
 
 **Installation:**  
 ```{r eval=TRUE}
-#if (!require("BiocManager", quietly = TRUE))
-#    install.packages("BiocManager")
-
-#BiocManager::install("HiBED")
+devtools::install_github("SalasLab/HiBED")
 ```
 
 **Loading packages:**  
