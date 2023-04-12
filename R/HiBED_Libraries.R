@@ -15,12 +15,10 @@
 #'
 #'
 #' @usage
-#' data_env <- new.env(parent = emptyenv())
-#' data("HiBED_Libraries", envir = data_env, package = "HiBED")
+#' data("HiBED_Libraries")
 #'
 #' @examples
-#' data_env <- new.env(parent = emptyenv())
-#' data("HiBED_Libraries", envir = data_env, package = "HiBED")
+#' data("HiBED_Libraries")
 #' head(HiBED_Libraries)
 "HiBED_Libraries"
 

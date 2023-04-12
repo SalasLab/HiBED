@@ -50,7 +50,9 @@
 #'
 
 HiBED_deconvolution <- function(Beta, h=2){
-
+  data_env <- new.env(parent = emptyenv())
+  data("HiBED_Libraries", envir = data_env, package = "HiBED")
+  HiBED_Libraries<-data_env[["HiBED_Libraries"]]
   Library_Layer1<-as.data.frame(
     HiBED_Libraries$Library_Layer1@assays@data@listData$counts)
   Library_Layer2A<-as.data.frame(
