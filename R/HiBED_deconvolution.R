@@ -13,7 +13,7 @@
 #' library(FlowSorted.DLPFC.450k)
 #' library(minfi)
 #' #Step 2: Load the library, example data and preprocess
-#' data("HiBED_Libraries", envir = data_env, package = "HiBED")
+#' data("HiBED_Libraries")
 #' Mset<-preprocessRaw(FlowSorted.DLPFC.450k)
 #' Examples_Betas<-getBeta(Mset)
 #' #Step 3: Run HiBED and show results
@@ -52,13 +52,13 @@
 HiBED_deconvolution <- function(Beta, h=2){
 
   Library_Layer1<-as.data.frame(
-    data_env[["HiBED_Libraries"]]$Library_Layer1@assays@data@listData$counts)
+    HiBED_Libraries$Library_Layer1@assays@data@listData$counts)
   Library_Layer2A<-as.data.frame(
-    data_env[["HiBED_Libraries"]]$Library_Layer2A@assays@data@listData$counts)
+    HiBED_Libraries$Library_Layer2A@assays@data@listData$counts)
   Library_Layer2B<-as.data.frame(
-    data_env[["HiBED_Libraries"]]$Library_Layer2B@assays@data@listData$counts)
+    HiBED_Libraries$Library_Layer2B@assays@data@listData$counts)
   Library_Layer2C<-as.data.frame(
-    data_env[["HiBED_Libraries"]]$Library_Layer2C@assays@data@listData$counts)
+    HiBED_Libraries$Library_Layer2C@assays@data@listData$counts)
 
   proj1<-as.data.frame(projectCellType_CP(Beta[rownames(Library_Layer1[
     which(rownames(Library_Layer1) %in% rownames(Beta)),]),],
