@@ -19,8 +19,7 @@
 #' data("HiBED_Libraries", envir = data_env, package = "HiBED")
 #'
 #' @examples
-#' data("HiBED_Libraries", envir = data_env, package = "HiBED")
-#' HiBED_Libraries <- data_env[["HiBED_Libraries"]]
+#' data("HiBED_Libraries")
 #' data("HiBED_Libraries")
 #' head(HiBED_Libraries)
 "HiBED_Libraries"
