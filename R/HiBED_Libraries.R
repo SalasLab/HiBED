@@ -17,6 +17,8 @@
 #' @usage
 #' data("HiBED_Libraries")
 #'
+#' @return A list with 4 libraries in SummarizedExperiment formats
+#'
 #' @examples
 #' data("HiBED_Libraries")
 #' head(HiBED_Libraries)

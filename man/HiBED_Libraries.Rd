@@ -14,6 +14,9 @@ The list contains matrices are 81 x 3, 183 x 4, 237 x 5, 120 x 4
 \usage{
 data("HiBED_Libraries")
 }
+\value{
+A list with 4 libraries in SummarizedExperiment formats
+}
 \description{
 This object contains 4 matrices of the the average
     DNA methylation values of the probes included in 4 layers of the HiBED
