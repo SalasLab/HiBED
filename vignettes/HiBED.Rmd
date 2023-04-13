@@ -28,12 +28,7 @@ the algorithm constrained projection/quadratic programming described
 in Houseman et al. 2012. 
 
 
-**Installation:**  
-```{r eval=TRUE}
-devtools::install_github("SalasLab/HiBED")
-```
-
-**Loading packages:**  
+**Loading package:**  
 ```{r eval=TRUE}
 library(HiBED)
 ```

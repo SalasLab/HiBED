@@ -1,9 +1,9 @@
 Package: HiBED
 Type: Package
 Title: HiBED
-Version: 0.99.1
+Version: 0.99.2
 Authors@R: c(person("Ze", "Zhang", role = c("cre", "aut"),
-            email = "ze.zhang.gr@dartmouth.edu"),
+            email = "ze.zhang.gr@dartmouth.edu", comment=c(ORCID="0000-0001-9854-5823")),
             person(c("Lucas", "A."), "Salas", role = c("aut"),
             email = "lucas.a.salas.diaz@dartmouth.edu"))
 Description: Hierarchical deconvolution for extensive cell type resolution in the human brain 

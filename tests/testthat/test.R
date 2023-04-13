@@ -9,9 +9,9 @@ test_that("errors if bad parameters", {
   Mset<-preprocessRaw(FlowSorted.DLPFC.450k)
   Examples_Betas<-getBeta(Mset)
   expect_error(HiBED_deconvolution(Examples_Betas,
-                                   h=3
+                                   h=2,"brain"
   ))
   expect_error(HiBED_deconvolution(Mset,
-                                   h=2
+                                   h=1
   ))
 })
