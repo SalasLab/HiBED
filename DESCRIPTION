@@ -1,7 +1,7 @@
 Package: HiBED
 Type: Package
 Title: HiBED
-Version: 0.99.5
+Version: 0.99.6
 Authors@R: c(person("Ze", "Zhang", role = c("cre", "aut"),
             email = "ze.zhang.gr@dartmouth.edu", comment=c(ORCID="0000-0001-9854-5823")),
             person(c("Lucas", "A."), "Salas", role = c("aut"),
@@ -17,6 +17,6 @@ VignetteBuilder: knitr
 biocViews: ExperimentData, Homo_sapiens_Data, Tissue, MicroarrayData, Genome, MethylationArrayData, PackageTypeData
 RoxygenNote: 7.2.1
 URL: https://github.com/SalasLab/HiBED
-Imports: dplyr, FlowSorted.Blood.EPIC, tibble, FlowSorted.DLPFC.450k, minfi, IlluminaHumanMethylation450kmanifest, IlluminaHumanMethylationEPICmanifest
-Suggests: knitr, rmarkdown, FlowSorted.CordBlood.450k, testthat 
+Imports: dplyr, FlowSorted.Blood.EPIC, tibble, FlowSorted.DLPFC.450k, minfi, AnnotationHub, IlluminaHumanMethylation450kmanifest, IlluminaHumanMethylationEPICmanifest
+Suggests: knitr, rmarkdown, testthat 
 BugReports: https://github.com/SalasLab/HiBED/issues.

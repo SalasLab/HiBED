@@ -1,13 +1,12 @@
 test_that("errors if bad parameters", {
   library(HiBED)
   library(FlowSorted.DLPFC.450k)
-  library(minfi)
   data(FlowSorted.DLPFC.450k)
   expect_error(HiBED_deconvolution(FlowSorted.DLPFC.450k,
                                    h=2
   ))
-  Mset<-preprocessRaw(FlowSorted.DLPFC.450k)
-  Examples_Betas<-getBeta(Mset)
+  Mset<-minfi::preprocessRaw(FlowSorted.DLPFC.450k)
+  Examples_Betas<-minfi::getBeta(Mset)
   expect_error(HiBED_deconvolution(Examples_Betas,
                                    h=2,"brain"
   ))
