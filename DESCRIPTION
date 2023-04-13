@@ -1,7 +1,7 @@
 Package: HiBED
 Type: Package
 Title: HiBED
-Version: 0.99.2
+Version: 0.99.3
 Authors@R: c(person("Ze", "Zhang", role = c("cre", "aut"),
             email = "ze.zhang.gr@dartmouth.edu", comment=c(ORCID="0000-0001-9854-5823")),
             person(c("Lucas", "A."), "Salas", role = c("aut"),
@@ -11,6 +11,7 @@ Description: Hierarchical deconvolution for extensive cell type resolution in th
              types (GABAergic neurons, glutamatergic neurons, astrocytes, microglial cells, 
 			 oligodendrocytes, endothelial cells, and stromal cells) in bulk brain tissues. 
 License: GPL-3
+Depends: R (>= 4.2)
 Encoding: UTF-8
 LazyData: false
 VignetteBuilder: knitr
