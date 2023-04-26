@@ -69,10 +69,7 @@ HiBED_deconvolution <- function(Beta, h=2){
                                                   %in% rownames(Beta)),]),
     lessThanOne = TRUE))
   proj1[proj1<1e-05]<-0
-  message(nrow(Library_Layer1) - nrow(Library_Layer1[
-    which(rownames(Library_Layer1) %in% rownames(Beta)),]),
-    " out of ",nrow(Library_Layer1),
-    "probes were missing in the Beta matrix for L1")
+
 
   proj2A<-as.data.frame(projectCellType_CP(Beta[
     rownames(Library_Layer2A[which(rownames(Library_Layer2A)
@@ -87,10 +84,6 @@ HiBED_deconvolution <- function(Beta, h=2){
     z<-1/sum(proj2A[i,])
     proj2A[i,]<-z*proj2A[i,]
   }
-  message(nrow(Library_Layer2A) - nrow(Library_Layer2A[which(
-    rownames(Library_Layer2A) %in% rownames(Beta)),]), " out of ",
-    nrow(Library_Layer2A),"probes were missing in the Beta matrix for L2A")
-
 
   proj2B<-as.data.frame(projectCellType_CP(Beta[rownames(Library_Layer2B[
     which(rownames(Library_Layer2B) %in% rownames(Beta)),]),],
@@ -104,9 +97,7 @@ HiBED_deconvolution <- function(Beta, h=2){
     z<-1/sum(proj2B[i,])
     proj2B[i,]<-z*proj2B[i,]
   }
-  message(nrow(Library_Layer2B) - nrow(Library_Layer2B[which(
-    rownames(Library_Layer2B) %in% rownames(Beta)),]), " out of ",
-    nrow(Library_Layer2B),"probes were missing in the Beta matrix for L2B")
+
 
   proj2C<-as.data.frame(projectCellType_CP(Beta[rownames(Library_Layer2C[
     which(rownames(Library_Layer2C) %in% rownames(Beta)),]),],
@@ -120,10 +111,7 @@ HiBED_deconvolution <- function(Beta, h=2){
     z<-1/sum(proj2C[i,])
     proj2C[i,]<-z*proj2C[i,]
   }
-  message(nrow(Library_Layer2C) - nrow(Library_Layer2C[which(
-    rownames(Library_Layer2C) %in% rownames(Beta)),]),
-    " out of ",nrow(Library_Layer2C),
-    "probes were missing in the Beta matrix for L2C")
+
 
   proj<-proj1
   h1_proj<-proj
@@ -160,8 +148,6 @@ HiBED_deconvolution <- function(Beta, h=2){
 
   proj_low<-proj %>% filter(Sum<1)
   ID_low<-rownames(proj_low)
-  # empty_list <- vector(mode = "list", length = length(ID_low))
-  # names(empty_list)<-ID_low
 
   proj<-proj[,!colnames(proj)=="Sum"]
 
