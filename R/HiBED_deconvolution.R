@@ -19,7 +19,7 @@
 #' head(HiBED_result)
 #'
 #' @param
-#' Beta Methylation beta matrix from brain samples.
+#' Beta Methylation beta in matrix or SummarizedExperiment from brain samples.
 #'
 #' @param
 #' h Numeric variable.
@@ -42,6 +42,8 @@
 #'
 #' @import  AnnotationHub
 #'
+#' @import  SummarizedExperiment
+#'
 #' @importFrom minfi preprocessRaw
 #'
 #' @importFrom minfi getBeta
@@ -54,13 +56,16 @@ HiBED_deconvolution <- function(Beta, h=2){
   data("HiBED_Libraries", envir = data_env, package = "HiBED")
   HiBED_Libraries<-data_env[["HiBED_Libraries"]]
   Library_Layer1<-as.data.frame(
-    HiBED_Libraries$Library_Layer1@assays@data@listData$counts)
+    assay(HiBED_Libraries$Library_Layer1))
   Library_Layer2A<-as.data.frame(
-    HiBED_Libraries$Library_Layer2A@assays@data@listData$counts)
+    assay(HiBED_Libraries$Library_Layer2A))
   Library_Layer2B<-as.data.frame(
-    HiBED_Libraries$Library_Layer2B@assays@data@listData$counts)
+    assay(HiBED_Libraries$Library_Layer2B))
   Library_Layer2C<-as.data.frame(
-    HiBED_Libraries$Library_Layer2C@assays@data@listData$counts)
+    assay(HiBED_Libraries$Library_Layer2C))
+  if (is(Beta,'SummarizedExperiment')){
+    Beta <- assay(Beta)
+  }
 
   proj1<-as.data.frame(projectCellType_CP(Beta[rownames(Library_Layer1[
     which(rownames(Library_Layer1) %in% rownames(Beta)),]),],
@@ -161,7 +166,7 @@ HiBED_deconvolution <- function(Beta, h=2){
   proja[is.nan.data.frame(proja)]<-0
   proj[rownames(proja),]<-proja
 
-  if(h=="1"){
+  if(h==1){
     output<-proj[,c("Endothelial and Stromal","Glial","Neuronal")]
   }else{output<-proj[,c("Endothelial","Stromal","Astrocyte","Microglial",
                         "Oligodendrocyte","GABA","GLU")]

@@ -7,7 +7,7 @@
 HiBED_deconvolution(Beta, h = 2)
 }
 \arguments{
-\item{Beta}{Methylation beta matrix from brain samples.}
+\item{Beta}{Methylation beta in matrix or SummarizedExperiment from brain samples.}
 
 \item{h}{Numeric variable.
 Specify the layer of deconvolution in the hierarchical model. Default is 2.}
