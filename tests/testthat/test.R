@@ -11,6 +11,6 @@ test_that("errors if bad parameters", {
                                    h=2,"brain"
   ))
   expect_error(HiBED_deconvolution(Mset,
-                                   h=1
+                                   h="one"
   ))
 })

@@ -19,7 +19,8 @@
 #' head(HiBED_result)
 #'
 #' @param
-#' Beta Methylation beta in matrix or SummarizedExperiment from brain samples.
+#' Beta Methylation beta in the format of matrix or data frame or Mset or
+#' SummarizedExperiment from brain samples.
 #'
 #' @param
 #' h Numeric variable.
@@ -63,9 +64,37 @@ HiBED_deconvolution <- function(Beta, h=2){
     assay(HiBED_Libraries$Library_Layer2B))
   Library_Layer2C<-as.data.frame(
     assay(HiBED_Libraries$Library_Layer2C))
+
+  if ((!is(h, "numeric"))) {
+    stop(strwrap(sprintf(
+      "object is of class '%s', but needs to be of
+                                class 'numeric' to use this function",
+      class(h)
+    ),
+    width = 80, prefix = " ",
+    initial = ""
+    ))
+  }
+  if (is(Beta, "MethylSet")) {
+    Beta <- getBeta(Beta)
+  }
+  if ((!is(Beta, "matrix")) && (!is(Beta, "data.frame")) &&
+      (!is(Beta, "SummarizedExperiment"))) {
+    stop(strwrap(sprintf(
+      "object is of class '%s', but needs to be of
+                                class 'matrix' 'data.frame' or
+                                'SummarizedExperiment' to use this function",
+      class(Beta)
+    ),
+    width = 80, prefix = " ",
+    initial = ""
+    ))
+  }
+
   if (is(Beta,'SummarizedExperiment')){
     Beta <- assay(Beta)
   }
+
 
   proj1<-as.data.frame(projectCellType_CP(Beta[rownames(Library_Layer1[
     which(rownames(Library_Layer1) %in% rownames(Beta)),]),],
