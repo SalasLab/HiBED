@@ -37,10 +37,6 @@
 #'
 #' @import  FlowSorted.DLPFC.450k
 #'
-#' @import  IlluminaHumanMethylation450kmanifest
-#'
-#' @import  IlluminaHumanMethylationEPICmanifest
-#'
 #' @import  AnnotationHub
 #'
 #' @import  SummarizedExperiment
@@ -57,13 +53,13 @@ HiBED_deconvolution <- function(Beta, h=2){
   data("HiBED_Libraries", envir = data_env, package = "HiBED")
   HiBED_Libraries<-data_env[["HiBED_Libraries"]]
   Library_Layer1<-as.data.frame(
-    assay(HiBED_Libraries$Library_Layer1))
+    assay(HiBED_Libraries$Library_Layer1,"counts"))
   Library_Layer2A<-as.data.frame(
-    assay(HiBED_Libraries$Library_Layer2A))
+    assay(HiBED_Libraries$Library_Layer2A,"counts"))
   Library_Layer2B<-as.data.frame(
-    assay(HiBED_Libraries$Library_Layer2B))
+    assay(HiBED_Libraries$Library_Layer2B,"counts"))
   Library_Layer2C<-as.data.frame(
-    assay(HiBED_Libraries$Library_Layer2C))
+    assay(HiBED_Libraries$Library_Layer2C,"counts"))
 
   if ((!is(h, "numeric"))) {
     stop(strwrap(sprintf(
