@@ -175,7 +175,7 @@ HiBED_deconvolution <- function(Beta, h=2){
 
   proj[is.nan.data.frame(proj)]<-0
 
-
+  SumValue<-NA
   proj$SumValue<-round(rowSums(proj),2)
 
   proj_low<-proj %>% filter(SumValue<1)
