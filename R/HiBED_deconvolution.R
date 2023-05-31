@@ -45,6 +45,8 @@
 #'
 #' @importFrom minfi getBeta
 #'
+#' @importFrom utils data
+#'
 #' @export
 #'
 
@@ -174,12 +176,12 @@ HiBED_deconvolution <- function(Beta, h=2){
   proj[is.nan.data.frame(proj)]<-0
 
 
-  proj$Sum<-round(rowSums(proj),2)
+  proj$SumValue<-round(rowSums(proj),2)
 
-  proj_low<-proj %>% filter(Sum<1)
+  proj_low<-proj %>% filter(SumValue<1)
   ID_low<-rownames(proj_low)
 
-  proj<-proj[,!colnames(proj)=="Sum"]
+  proj<-proj[,!colnames(proj)=="SumValue"]
 
   proj[ID_low,]<- h2C_proj[ID_low,]
 
@@ -197,11 +199,11 @@ HiBED_deconvolution <- function(Beta, h=2){
                         "Oligodendrocyte","GABA","GLU")]
   }
 
-  output$Sum<-rowSums(output)
+  output$SumValue<-rowSums(output)
 
-  output_low<-output %>% filter(Sum == "NaN")
+  output_low<-output %>% filter(SumValue == "NaN")
   ID_low<-rownames(output_low)
   if(length(ID_low)!=0){
     message("NaN indicates noisy deconvolution signal, thus removed")}
-  return(output[,!colnames(output)=="Sum"]*100)
+  return(output[,!colnames(output)=="SumValue"]*100)
 }
