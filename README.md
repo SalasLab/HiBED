@@ -37,6 +37,7 @@ head(HiBED_result)
 ####  https://www.dropbox.com/sh/rbxjhq9zalqq58e/AAABR8kKegXKVMeNJV8a2lJRa?dl=0
 ```
 library(HiBED)
+library(minfi)
 library(IlluminaHumanMethylationEPICv2anno.20a1.hg38)
 library(IlluminaHumanMethylationEPICv2manifest)
 ```
