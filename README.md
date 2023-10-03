@@ -33,28 +33,21 @@ head(HiBED_result)
 ```
 
 ## EPICv2 Solution
+#### if you're having trouble dowloading v2 annotation files, you can find them at 
+####  https://www.dropbox.com/sh/rbxjhq9zalqq58e/AAABR8kKegXKVMeNJV8a2lJRa?dl=0
 ```
 library(HiBED)
 library(IlluminaHumanMethylationEPICv2anno.20a1.hg38)
 library(IlluminaHumanMethylationEPICv2manifest)
 ```
-#### if you're having trouble dowloading v2 annotation files, you can find them at 
-####  https://www.dropbox.com/sh/rbxjhq9zalqq58e/AAABR8kKegXKVMeNJV8a2lJRa?dl=0
-
+#### dir should be the folder containing EPICv2 IDATs
 ```
 v2_RGset = read.metharray.exp("dir",recursive = TRUE) 
-```
-#### dir should be the folder containing EPICv2 IDATs
-
-```
 annotation(v2_RGset)["array"] = "IlluminaHumanMethylationEPICv2" #Update annotation files for v2
 annotation(v2_RGset)["annotation"] = "20a1.hg38"
-
 v2_MSet <-preprocessNoob(v2_RGset)
-
 v2_Betas<-getBeta(v2_MSet)
 v2_Betas<- sesame::betasCollapseToPfx(v2_Betas)
-
 HiBED_deconvolution(v2_Betas, h=2)
 ```
 
